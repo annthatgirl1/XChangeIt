@@ -35,43 +35,9 @@ This project is a **Currency Exchange Rate Converter** built using **C#**, desig
 
 ---
 
-## Project Structure
+## ⚙️ How It Works
 
-### Classes
-
-#### `CurrencyConverter`
-
-Handles the core logic for converting currency using a provided exchange rate source.
-
-```csharp
-public class CurrencyConverter
-{
-    public decimal Amount { get; set; }
-    public string SourceCurrency { get; set; }
-    public string TargetCurrency { get; set; }
-    public DateTime? RateDate { get; set; }
-
-    private IExchangeRateProvider _rateProvider;
-
-    public CurrencyConverter(IExchangeRateProvider rateProvider)
-    {
-        _rateProvider = rateProvider;
-    }
-
-    public decimal Convert()
-    {
-        decimal rate = _rateProvider.GetExchangeRate(SourceCurrency, TargetCurrency, RateDate);
-        return Amount * rate;
-    }
-
-    public static Dictionary<string, string> GetAvailableCurrencies()
-    {
-        return new Dictionary<string, string>
-        {
-            {"USD", "US Dollar"},
-            {"EUR", "Euro"},
-            {"GBP", "British Pound"},
-            {"JPY", "Japanese Yen"}
-        };
-    }
-}
+1. **User inputs** the amount, source currency, target currency, and optionally a date.
+2. The application **uses a rate provider** to get the exchange rate (fixed, local, or API).
+3. The `CurrencyConverter` **calculates the result** by multiplying the amount by the exchange rate.
+4. The result is **displayed** to the user via console or UI.
